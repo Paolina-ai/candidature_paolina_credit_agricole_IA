@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidature Assistante Cheffe de Projet (IA) - Paolina</title>
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        caGreen: '#007053',     /* Vert foncé Crédit Agricole (Primaire) */
+                        caLime: '#C4D600',      /* Vert clair / Lime (Accent) */
+                        caNavy: '#1D1D2C',      /* Bleu marine foncé (Texte) */
+                        caTeal: '#00977B',      /* Vert intermédiaire pour les dégradés */
+                        caLight: '#F4F6F6',     /* Gris très clair pour les fonds */
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'shimmer': 'shimmer 3s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(196, 214, 0, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(196, 214, 0, 0.8)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Styles personnalisés pour les accordéons et animations */
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.active {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-btn.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Nouveaux dégradés Crédit Agricole */
+        .gradient-ca {
+            background: linear-gradient(135deg, #007053 0%, #00977B 100%);
+        }
+        .gradient-ca-lime {
+            background: linear-gradient(135deg, #C4D600 0%, #00977B 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        
+        html { scroll-behavior: smooth; }
+        
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        nav a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #C4D600;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        button, a[href^="#"], a[download] { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        .shimmer-effect:hover::before { left: 100%; }
+        
+        i { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-lift:hover i { transform: scale(1.1); }
+        
+        span[class*="rounded-full"] { transition: all 0.3s ease; }
+        span[class*="rounded-full"]:hover { transform: scale(1.05); }
+        
+        .skill-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .skill-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-color: #007053;
+        }
+        
+        .timeline-dot { transition: all 0.3s ease; }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(196, 214, 0, 0.6);
+        }
+        
+        .gradient-ca {
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .particle { animation: float 6s ease-in-out infinite; }
+        .particle:nth-child(2) { animation-delay: -2s; animation-duration: 8s; }
+        .particle:nth-child(3) { animation-delay: -4s; animation-duration: 10s; }
+        
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .accordion-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .accordion-btn:hover { transform: translateX(5px); }
+        
+        .timeline-step { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .timeline-step:hover { transform: scale(1.05); }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        body { animation: fadeIn 0.5s ease-in; }
+        
+        /* Barre de progression */
+        .progress-bar-container {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 200px;
+            background: rgba(0, 112, 83, 0.1);
+            border-radius: 10px;
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .progress-bar-fill {
+            width: 100%;
+            background: linear-gradient(180deg, #C4D600 0%, #007053 100%);
+            border-radius: 10px;
+            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 0%;
+        }
+    </style>
+</head>
+<body class="bg-caLight text-caNavy antialiased selection:bg-caLime selection:text-caNavy">
+
+    <!-- BARRE DE PROGRESSION -->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+
+    <!-- NAVIGATION MENU -->
+    <nav id="main-nav" class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="font-extrabold text-xl text-caGreen tracking-tight flex items-center">
+                Paolina<span class="text-caLime text-3xl leading-none ml-0.5">.</span><span class="text-caNavy ml-1 font-semibold">CréditAgricole</span>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-bold text-sm">
+                <a href="#pourquoi" class="text-caNavy hover:text-caGreen transition-colors">Pourquoi je candidate</a>
+                <a href="#profil" class="text-caNavy hover:text-caGreen transition-colors">Mon profil</a>
+                <a href="#contact" class="text-caNavy hover:text-caGreen transition-colors">Me contacter</a>
+            </div>
+
+            <!-- Mobile Burger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-caGreen text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-caGreen absolute top-full left-0 w-full shadow-xl border-t border-white/10">
+            <div class="flex flex-col px-6 py-4 space-y-4 font-bold text-center">
+                <a href="#pourquoi" class="mobile-link text-white hover:text-caLime transition-colors py-3 border-b border-white/10">Pourquoi je candidate</a>
+                <a href="#profil" class="mobile-link text-white hover:text-caLime transition-colors py-3 border-b border-white/10">Mon profil</a>
+                <a href="#contact" class="mobile-link text-white hover:text-caLime transition-colors py-3">Me contacter</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER / HERO SECTION -->
+    <header class="gradient-ca min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20 pt-20 pb-10">
+        <!-- Particules décoratives d'arrière-plan -->
+        <div class="particle absolute top-1/4 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay opacity-10 animate-pulse-slow"></div>
+        <div class="particle absolute bottom-1/4 right-10 w-64 h-64 bg-caLime rounded-full mix-blend-overlay opacity-20 blur-3xl"></div>
+        <div class="particle absolute top-20 right-20 w-16 h-16 bg-white rounded-full mix-blend-overlay opacity-20"></div>
+
+        <div class="max-w-5xl mx-auto w-full z-10 text-center md:text-left">
+            <div class="inline-block px-5 py-1.5 rounded-full bg-caLime/90 text-caNavy text-sm font-bold tracking-wider mb-6 animate-fade-in-up shadow-sm border border-caLime/50" style="animation-delay: 0.1s;">
+                CANDIDATURE ALTERNANCE
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 animate-fade-in-up tracking-tight" style="animation-delay: 0.2s;">
+                Je suis Paolina,<br>
+                <span class="text-caLime drop-shadow-sm">candidate au poste d’Assistante Cheffe de projet (IA / Transformation Digital).</span>
+            </h1>
+            <p class="text-lg md:text-xl font-medium text-white/90 max-w-2xl mt-8 animate-fade-in-up leading-relaxed" style="animation-delay: 0.3s;">
+                Étudiante en Mastère 2 Stratégies E-business à l'ESD Paris.<br>
+                <strong>Rythme :</strong> 1 jour école / 4 jours entreprise (+ 1 sem. complète toutes les 4-5 semaines).
+            </p>
+            
+            <div class="mt-12 animate-fade-in-up flex flex-wrap gap-4 justify-center md:justify-start" style="animation-delay: 0.4s;">
+                <a href="#pourquoi" class="cta-button inline-flex items-center justify-center px-8 py-4 text-base font-bold text-caNavy bg-white rounded-full hover:bg-gray-50 transition-colors duration-300 shadow-lg group relative overflow-hidden">
+                    <span class="relative z-10">Découvrir mon parcours</span>
+                    <i class="fas fa-arrow-down ml-3 text-caGreen group-hover:translate-y-1 transition-transform relative z-10"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Motif distinctif type Crédit Agricole -->
+        <div class="absolute bottom-0 left-0 w-full h-16 bg-white" style="clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%);"></div>
+    </header>
+
+    <!-- SECTION 1 : POURQUOI JE CANDIDATE -->
+    <section id="pourquoi" class="py-20 px-6 lg:px-20 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-caNavy mb-12 uppercase pb-4 relative inline-block reveal after:absolute after:bottom-0 after:left-0 after:w-24 after:h-1.5 after:bg-caLime after:rounded-full">
+                POURQUOI JE CANDIDATE ?
+            </h1>
+
+            <h2 class="text-2xl font-bold text-caGreen mb-8 flex items-center reveal">
+                <div class="flex flex-col gap-1.5 mr-4 shrink-0">
+                    <div class="w-6 h-1.5 bg-caLime rounded-full"></div>
+                    <div class="w-3 h-1.5 bg-caGreen rounded-full"></div>
+                </div>
+                Mon parcours :
+            </h2>
+
+            <!-- FORMATIONS -->
+            <div class="mb-12 reveal">
+                <div class="border-l-4 border-caLime pl-4 md:pl-6 ml-2 md:ml-0">
+                    <h3 class="text-xl font-bold text-gray-400 mb-6 uppercase tracking-wider">FORMATIONS</h3>
+                    <div class="relative border-l-2 border-caLime pl-6 ml-3 space-y-8">
+                        
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-caLime rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-caNavy">Mastère Stratégies E-Business</h4>
+                            <p class="text-gray-600 font-medium">2025 - 2027, École Supérieure du Digital (ESD) Paris</p>
+                        </div>
+
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-gray-300 rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-caNavy">BUT Techniques de Commercialisation (Spécialité Marketing digital)</h4>
+                            <p class="text-gray-600 font-medium">2021 - 2024</p>
+                            <p class="text-sm text-gray-500 mt-1">BUT 3 : Échange universitaire à l’UADY (Mexique)<br>BUT 1 & 2 : Formation initiale à l’IUT d’Angers</p>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1.5 w-4 h-4 bg-gray-300 rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-lg text-caNavy">Baccalauréat Général</h4>
+                            <p class="text-gray-600 font-medium">2021 - Mention Très Bien, Section européenne anglais</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERNIÈRES EXPÉRIENCES -->
+            <div class="mb-12 reveal">
+                <div class="border-l-4 border-caGreen pl-4 md:pl-6 ml-2 md:ml-0">
+                    <h3 class="text-xl font-bold text-gray-400 mb-6 uppercase tracking-wider">EXPÉRIENCES PROFESSIONNELLES</h3>
+                    <div class="space-y-4">
+                        
+                        <!-- Expérience 1 : Les Sherpas (Le coeur de l'expertise IA) -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm shimmer-effect reveal-delay-1">
+                            <div class="w-full px-6 py-5 text-left bg-gray-50 border-b border-gray-100 flex justify-between items-start flex-col sm:flex-row gap-2">
+                                <div>
+                                    <h4 class="font-bold text-lg text-caNavy">Alternante Cheffe de projets SEO / GEO</h4>
+                                    <p class="text-sm text-caGreen font-bold mt-1">Les Sherpas, Paris (75)</p>
+                                </div>
+                                <span class="bg-caLime/20 text-caGreen text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">Depuis août 2025</span>
+                            </div>
+                            <div class="bg-white px-6">
+                                <ul class="list-none space-y-3 py-4 text-gray-700">
+                                    <li class="flex items-start"><i class="fas fa-check-circle text-caLime mt-1 mr-3"></i><span><strong>Contenu & SEO (IA) :</strong> Intégration de l'IA générative dans la production (briefs, optimisation) et <strong>création d'outils d'accompagnement dédiés (bibliothèques de prompts, GPTs personnalisés)</strong>.</span></li>
+                                    <li class="flex items-start"><i class="fas fa-check-circle text-caLime mt-1 mr-3"></i><span><strong>Stratégie search :</strong> Pilotage de la visibilité sur Google & IA (GEO) via l'analyse d'intentions.</span></li>
+                                    <li class="flex items-start"><i class="fas fa-check-circle text-caLime mt-1 mr-3"></i><span><strong>Performance & Acculturation :</strong> Suivi des KPI, création de reporting automatisé et <strong>animation d'ateliers de restitution pour piloter l'adoption</strong> des outils et valoriser les gains.</span></li>
+                                    <li class="flex items-start"><i class="fas fa-check-circle text-caLime mt-1 mr-3"></i><span><strong>Veille :</strong> Surveillance continue sur les nouveaux outils IA pour partager les meilleures pratiques.</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Expérience 2 : La Banque Postale (Connaissance secteur bancaire) -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm shimmer-effect reveal-delay-2">
+                            <div class="w-full px-6 py-5 text-left bg-gray-50 border-b border-gray-100 flex justify-between items-start flex-col sm:flex-row gap-2">
+                                <div>
+                                    <h4 class="font-bold text-lg text-caNavy">Chargée de relation bancaire</h4>
+                                    <p class="text-sm text-gray-500 font-semibold mt-1">La Banque Postale, Olivet (45)</p>
+                                </div>
+                                <span class="bg-gray-200 text-gray-700 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">2025 (6 mois)</span>
+                            </div>
+                            <div class="bg-white px-6 py-4 text-gray-700">
+                                <p class="flex items-start"><i class="fas fa-university text-gray-400 mt-1 mr-3"></i><span>Acquisition d'une solide <strong>connaissance des exigences et de l'environnement du secteur bancaire</strong>.</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Expérience 3 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm shimmer-effect reveal-delay-3">
+                            <div class="w-full px-6 py-5 text-left bg-gray-50 flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-caNavy">Télé-conseillère commerciale</h4>
+                                    <p class="text-sm text-gray-500 font-semibold mt-1">Téléperformance, Fleury-les-Aubrais (45)</p>
+                                </div>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap hidden sm:inline-block">2024/2025 (6 mois)</span>
+                            </div>
+                        </div>
+
+                        <!-- Expérience 4 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm shimmer-effect reveal-delay-4">
+                            <div class="w-full px-6 py-5 text-left bg-gray-50 flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-caNavy">Stagiaire web éditorial SEO / Assistante Marketing digital</h4>
+                                    <p class="text-sm text-gray-500 font-semibold mt-1">C.R.T, Orléans (45)</p>
+                                </div>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap hidden sm:inline-block">2023 (4 mois)</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEPARATEUR -->
+            <div class="flex flex-col items-center justify-center my-12 reveal">
+                <div class="w-1 h-16 bg-gradient-to-b from-caLime to-caGreen rounded-full opacity-80"></div>
+                <i class="fas fa-chevron-down text-caGreen text-2xl animate-bounce mt-2"></i>
+            </div>
+
+            <!-- FIL ROUGE -->
+            <div class="bg-caNavy text-white rounded-3xl p-8 md:p-12 shadow-xl reveal relative overflow-hidden">
+                <!-- Décoration -->
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-caGreen rounded-full mix-blend-screen opacity-50 blur-2xl"></div>
+                
+                <h2 class="text-2xl font-bold text-white mb-10 flex items-center">
+                    <div class="flex flex-col gap-1.5 mr-4 shrink-0">
+                        <div class="w-6 h-1.5 bg-caLime rounded-full"></div>
+                        <div class="w-3 h-1.5 bg-caGreen rounded-full"></div>
+                    </div>
+                    Une suite logique 
+                </h2>
+                
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-caLime before:to-transparent">
+                    
+                    <!-- Step 1 -->
+                    <div class="timeline-item relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="timeline-dot flex items-center justify-center w-10 h-10 rounded-full bg-caNavy border-4 border-gray-400 text-gray-400 font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">1</div>
+                        <div class="timeline-step w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:border-gray-400 transition-colors ml-4 md:ml-0">
+                            <h3 class="font-bold text-gray-300 mb-2 uppercase text-sm">Le socle : Connaissance métier & clients</h3>
+                            <p class="text-sm text-gray-400">Mes expériences en relation client, et surtout mon passage à <strong>La Banque Postale</strong>, m'ont permis de comprendre les exigences, la culture et le fonctionnement du secteur bancaire.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-item relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="timeline-dot flex items-center justify-center w-10 h-10 rounded-full bg-caNavy border-4 border-caTeal text-caTeal font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">2</div>
+                        <div class="timeline-step w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:border-caTeal transition-colors ml-4 md:ml-0">
+                            <h3 class="font-bold text-caTeal mb-2 uppercase text-sm">La révolution IA : Application terrain</h3>
+                            <p class="text-sm text-gray-300">Mon alternance actuelle chez Les Sherpas m'a appris le virage de l'IA générative. J'y conçoit des bibliothèques de prompts, des GPTs sur-mesure et des automatisations pour rendre l'équipe SEO plus performantes au quotidien.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-item relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="timeline-dot flex items-center justify-center w-10 h-10 rounded-full bg-caNavy border-4 border-caLime text-caLime font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">3</div>
+                        <div class="timeline-step w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:border-caLime transition-colors ml-4 md:ml-0">
+                            <h3 class="font-bold text-caLime mb-2 uppercase text-sm">Le levier clé : Conduite du changement</h3>
+                            <p class="text-sm text-gray-300">Créer un outil ne suffit pas, il faut qu'il soit utilisé. J'ai appris à mesurer son adoption (KPIs) et à le documenter pour accompagner les équipes et faciliter son utilisation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-item relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="timeline-dot flex items-center justify-center w-10 h-10 rounded-full bg-caLime text-caNavy font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"><i class="fas fa-bullseye"></i></div>
+                        <div class="timeline-step w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white text-caNavy rounded-xl p-5 shadow-lg ml-4 md:ml-0 hover-lift cursor-default border-2 border-caLime">
+                            <h3 class="font-bold mb-2 uppercase text-caGreen">L'objectif : Le Crédit Agricole S.A.</h3>
+                            <p class="text-sm font-medium">Rejoindre votre Cellule d’Accompagnement IA s'inscrit dans la continuité de mon parcours. Mon objectif : diffuser les bonnes pratiques, animer la communauté d'utilisateurs et créer des ressources concrètes (comme une bibliothèque de prompts) pour accélérer l'acculturation et l'adoption de l'IA par les collaborateurs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2 : MON PROFIL -->
+    <section id="profil" class="py-20 px-6 lg:px-20 bg-caLight border-t border-gray-200">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-caNavy mb-12 uppercase pb-4 relative inline-block reveal after:absolute after:bottom-0 after:left-0 after:w-24 after:h-1.5 after:bg-caLime after:rounded-full">
+                COMPÉTENCES & OUTILS
+            </h1>
+
+            <h2 class="text-2xl font-bold text-caGreen mb-10 flex items-center reveal">
+                <div class="flex flex-col gap-1.5 mr-4 shrink-0">
+                    <div class="w-6 h-1.5 bg-caLime rounded-full"></div>
+                    <div class="w-3 h-1.5 bg-caGreen rounded-full"></div>
+                </div>
+                Expertise projet et technique par l'exemple :
+            </h2>
+
+            <!-- SOUS-PARTIE 1 : CONDUITE DU CHANGEMENT & IA -->
+            <div class="mb-16 reveal">
+                <div class="border-l-4 border-caLime pl-4 md:pl-6 ml-2 md:ml-0">
+                    <h3 class="text-xl font-bold mb-6 flex items-center text-caNavy"><i class="fas fa-users-cog text-caLime mr-3 text-2xl"></i> Accompagnement & Conduite du changement IA :</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <!-- Projet DinMo -->
+                        <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-caNavy mb-2 uppercase text-sm tracking-wide">Audit IA & Conduite du changement <br><span class="text-xs font-normal text-gray-500 normal-case">(Projet Étudiant - DinMo)</span></h4>
+                            <p class="text-gray-600 text-sm mb-4">Analyse des processus internes, formalisation des besoins métiers, recommandations stratégiques pour l'intégration de l'IA (GEO) et création de supports méthodologiques d'accompagnement.</p>
+                            <div class="flex items-center text-xs font-bold text-caGreen bg-green-50 px-3 py-1.5 rounded-full w-fit">
+                                <i class="fas fa-clipboard-check mr-2"></i> Pédagogie & Audit
+                            </div>
+                        </div>
+
+                        <!-- Outils dédiés -->
+                        <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-caNavy mb-2 uppercase text-sm tracking-wide">Création d'outils d'adoption <br><span class="text-xs font-normal text-gray-500 normal-case">(Les Sherpas)</span></h4>
+                            <p class="text-gray-600 text-sm mb-4">Construction de bibliothèques de prompts centralisées et paramétrage d'agents GPT personnalisés pour faciliter la prise en main de l'IA générative par les rédacteurs, en garantissant la qualité.</p>
+                            <div class="flex items-center text-xs font-bold text-caGreen bg-green-50 px-3 py-1.5 rounded-full w-fit">
+                                <i class="fas fa-robot mr-2"></i> Prompt Engineering
+                            </div>
+                        </div>
+
+                        <!-- Pilotage KPI -->
+                        <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-caNavy mb-2 uppercase text-sm tracking-wide">Pilotage de l'adoption & Reporting <br><span class="text-xs font-normal text-gray-500 normal-case">(Les Sherpas)</span></h4>
+                            <p class="text-gray-600 text-sm mb-4">Suivi analytique rigoureux via la mise en place de KPI. Création de reporting automatisés permettant de mesurer l'impact réel des outils IA et d'animer des ateliers de restitution.</p>
+                            <div class="flex items-center text-xs font-bold text-caGreen bg-green-50 px-3 py-1.5 rounded-full w-fit">
+                                <i class="fas fa-chart-line mr-2"></i> Analyse & KPI
+                            </div>
+                        </div>
+
+                        <!-- Workflows -->
+                        <div class="skill-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 class="font-bold text-caNavy mb-2 uppercase text-sm tracking-wide">Prototypage de workflows Low-code <br><span class="text-xs font-normal text-gray-500 normal-case">(Projet Étudiant & Entreprise)</span></h4>
+                            <p class="text-gray-600 text-sm mb-4">Automatisation de processus métiers et opérationnels (Make, n8n, Zapier) pour démontrer concrètement aux équipes comment réduire les tâches chronophages.</p>
+                            <div class="flex items-center text-xs font-bold text-caGreen bg-green-50 px-3 py-1.5 rounded-full w-fit">
+                                <i class="fas fa-project-diagram mr-2"></i> Automatisation
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vibe Coding (Curiosité numérique) -->
+                    <div class="gradient-ca p-8 rounded-2xl shadow-lg hover-lift text-white relative overflow-hidden mt-8">
+                        <div class="absolute right-0 top-0 text-white/10 text-8xl -mt-4 -mr-4"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="text-xl font-bold mb-4 flex items-center relative z-10"><i class="fas fa-bolt text-caLime mr-3"></i> Démonstration technique : Le "Vibe Coding" (ou développement assisté par l'IA)</h3>
+                        <div class="relative z-10">
+                            <h4 class="font-bold text-caLime text-lg mb-3">L'interface de cette candidature a été entièrement codée avec l'IA</h4>
+                            <ul class="space-y-2 text-sm font-medium mb-4 text-white/90">
+                                <li><i class="fas fa-check-circle text-caLime mr-2"></i><strong>Preuve de curiosité :</strong> Utilisation avancée des LLM (Cursor, Gemini, Lovable) pour prototyper et développer cette page de A à Z.</li>
+                                <li><i class="fas fa-check-circle text-caLime mr-2"></i><strong>Pragmatisme & agilité :</strong> En tant que cheffe de projet, l'IA me permet de maquetter rapidement des idées et de créer de la valeur concrète sans être développeuse.</li>
+                                <li><i class="fas fa-check-circle text-caLime mr-2"></i><strong>Acculturation par l'exemple :</strong> J'expérimente en continu ces nouveaux usages pour pouvoir demain les vulgariser et les transmettre à vos équipes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OUTILS MAITRISÉS -->
+            <div class="mb-16 reveal">
+                <div class="border-l-4 border-caGreen pl-4 md:pl-6 ml-2 md:ml-0">
+                    <h2 class="text-2xl font-bold text-caNavy mb-8 flex items-center">
+                        <i class="fas fa-toolbox text-caGreen mr-3"></i> Boîte à outils technique :
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="skill-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <h3 class="font-bold text-center border-b pb-3 mb-4 text-caNavy"><i class="fas fa-brain text-caLime mr-2"></i> Intelligence Artificielle</h3>
+                            <div class="flex flex-wrap gap-2 justify-center">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">ChatGPT (Avancé)</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Claude</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Gemini</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Perplexity</span>
+                                <span class="px-3 py-1 bg-green-50 text-caGreen border border-green-200 rounded-full text-sm font-medium">Cursor / Lovable</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-card bg-white rounded-xl p-6 shadow-sm border border-gray-200 border-t-4 border-t-caGreen">
+                            <h3 class="font-bold text-center border-b pb-3 mb-4 text-caNavy"><i class="fab fa-microsoft text-blue-500 mr-2"></i> Suite Collaborative</h3>
+                            <div class="flex flex-wrap gap-2 justify-center">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-bold border border-blue-200 shadow-sm">Microsoft 365</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Teams / SharePoint</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Google Workspace</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <h3 class="font-bold text-center border-b pb-3 mb-4 text-caNavy"><i class="fas fa-project-diagram text-gray-500 mr-2"></i> Low-code & Data</h3>
+                            <div class="flex flex-wrap gap-2 justify-center">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Make / Zapier / n8n</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Airtable / Softr</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">Google Apps Script</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200">GA4 / Search Console</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOFT SKILLS (Adaptés à l'offre) -->
+            <div class="reveal">
+                <h2 class="text-2xl font-bold text-caNavy mb-8 flex items-center">
+                    <div class="flex flex-col gap-1.5 mr-4 shrink-0">
+                        <div class="w-6 h-1.5 bg-caLime rounded-full"></div>
+                        <div class="w-3 h-1.5 bg-caGreen rounded-full"></div>
+                    </div>
+                    Compétences transverses & Soft Skills :
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
+                    
+                    <!-- Soft Skill 1 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm w-full">
+                        <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none">
+                            <div class="flex items-center pr-4">
+                                <div class="bg-green-50 text-caGreen rounded-full mr-4 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <h4 class="font-bold text-caNavy text-sm md:text-base leading-tight">Pédagogie et vulgarisation</h4>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400 accordion-icon shrink-0"></i>
+                        </button>
+                        <div class="accordion-content bg-white px-5 md:px-6">
+                            <div class="py-4 text-gray-600 text-sm border-t border-gray-100">
+                                <p>Je sais traduire des concepts techniques IA en usages quotidiens simples pour les collaborateurs. Mes expériences (BAFA, animation d'ateliers) m'ont appris à adapter mon discours à mon audience pour lever les freins.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skill 2 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm w-full">
+                        <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none">
+                            <div class="flex items-center pr-4">
+                                <div class="bg-yellow-50 text-yellow-600 rounded-full mr-4 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fas fa-lightbulb"></i></div>
+                                <h4 class="font-bold text-caNavy text-sm md:text-base leading-tight">Curiosité sur les outils numériques</h4>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400 accordion-icon shrink-0"></i>
+                        </button>
+                        <div class="accordion-content bg-white px-5 md:px-6">
+                            <div class="py-4 text-gray-600 text-sm border-t border-gray-100">
+                                <p>L'écosystème IA évolue chaque semaine. Je maintiens une veille constante et teste proactivement les nouveaux outils (comme le Vibe Coding, les nouveaux modèles Claude/GPT) pour déceler les meilleures opportunités d'amélioration.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skill 3 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm w-full">
+                        <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none">
+                            <div class="flex items-center pr-4">
+                                <div class="bg-blue-50 text-blue-600 rounded-full mr-4 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fas fa-tasks"></i></div>
+                                <h4 class="font-bold text-caNavy text-sm md:text-base leading-tight">Sens de l’organisation et adaptabilité</h4>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400 accordion-icon shrink-0"></i>
+                        </button>
+                        <div class="accordion-content bg-white px-5 md:px-6">
+                            <div class="py-4 text-gray-600 text-sm border-t border-gray-100">
+                                <p>Le rythme de l'alternance m'a appris à concilier avec rigueur mon Mastère et mes missions opérationnelles. Par ailleurs, mon année d'échange au Mexique a forgé ma capacité à m'adapter très vite à la nouveauté.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skill 4 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm w-full">
+                        <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none">
+                            <div class="flex items-center pr-4">
+                                <div class="bg-purple-50 text-purple-600 rounded-full mr-4 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fas fa-pen-nib"></i></div>
+                                <h4 class="font-bold text-caNavy text-sm md:text-base leading-tight">Capacités rédactionnelles & communication</h4>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400 accordion-icon shrink-0"></i>
+                        </button>
+                        <div class="accordion-content bg-white px-5 md:px-6">
+                            <div class="py-4 text-gray-600 text-sm border-t border-gray-100">
+                                <p>Ancienne rédactrice SEO (Certifiée Voltaire Affaires), je sais formuler des messages clairs. C'est essentiel pour rédiger des méthodologies limpides, animer une communauté en ligne et formuler des prompts efficients (Prompt Engineering).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Soft Skill 5 -->
+                    <div class="border border-gray-200 rounded-xl overflow-hidden hover-lift bg-white shadow-sm w-full">
+                        <button class="accordion-btn w-full px-5 py-4 text-left flex justify-between items-center bg-gray-50 hover:bg-gray-100 transition-colors focus:outline-none">
+                            <div class="flex items-center pr-4">
+                                <div class="bg-teal-50 text-teal-600 rounded-full mr-4 shrink-0 w-10 h-10 flex items-center justify-center"><i class="fas fa-ear-listen"></i></div>
+                                <h4 class="font-bold text-caNavy text-sm md:text-base leading-tight">À l'écoute & autonome</h4>
+                            </div>
+                            <i class="fas fa-chevron-down text-gray-400 accordion-icon shrink-0"></i>
+                        </button>
+                        <div class="accordion-content bg-white px-5 md:px-6">
+                            <div class="py-4 text-gray-600 text-sm border-t border-gray-100">
+                                <p>Mes expériences en relation client (notamment en tant que télé-conseillère commerciale) m'ont appris l'importance d'une écoute active. Aujourd'hui, j'applique cette posture dans mes projets IA : je comprends d'abord le besoin métier avant de concevoir la solution technique en autonomie, tout en maintenant une boucle de feedback.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications & Langues -->
+                    <div class="bg-white border-2 border-caLime rounded-xl p-5 shadow-sm flex flex-col justify-center">
+                        <h4 class="font-bold text-caNavy mb-3 border-b border-gray-100 pb-2"><i class="fas fa-award text-caGreen mr-2"></i> Langues & Certifications</h4>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p><strong>Langues :</strong> Anglais (B2) • Espagnol (C1)</p>
+                            <p><strong>Certifications :</strong> 
+                                <span class="inline-block bg-gray-100 px-2 py-0.5 rounded text-xs mt-1">Piano Analytics (2025)</span>
+                                <span class="inline-block bg-gray-100 px-2 py-0.5 rounded text-xs mt-1">Semrush (2024)</span>
+                                <span class="inline-block bg-gray-100 px-2 py-0.5 rounded text-xs mt-1">Hubspot (2024)</span>
+                                <span class="inline-block bg-gray-100 px-2 py-0.5 rounded text-xs mt-1">Voltaire Affaires (721)</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3 : CONTACT -->
+    <section id="contact" class="py-20 bg-caNavy text-white text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 gradient-ca-lime"></div>
+        
+        <div class="max-w-3xl mx-auto px-6 relative z-10 reveal">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-12 uppercase pb-4 relative inline-block reveal after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1.5 after:bg-caLime after:rounded-full">
+                RENCONTRONS-NOUS
+            </h1>
+            
+            <p class="text-xl md:text-2xl font-light mb-12 leading-relaxed">
+                Vos missions au sein de la Direction Data & IA correspondent parfaitement à mon projet professionnel. <strong class="text-caLime font-bold">Échangeons</strong> pour voir comment je peux contribuer à l'adoption de l'IA par vos collaborateurs !
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+                <div class="flex items-center bg-white/10 px-6 py-4 rounded-xl w-full md:w-auto hover:bg-white/20 transition-colors">
+                    <i class="fas fa-envelope text-caLime text-2xl mr-4"></i>
+                    <span class="text-lg font-medium">roiatti3paolina@gmail.com</span>
+                </div>
+                
+                <div class="flex items-center bg-white/10 px-6 py-4 rounded-xl w-full md:w-auto hover:bg-white/20 transition-colors">
+                    <i class="fas fa-phone-alt text-caLime text-2xl mr-4"></i>
+                    <span class="text-lg font-medium">07.83.06.79.94</span>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <a href="https://www.linkedin.com/in/paolina-roiatti-3b0a5a223/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-caLime hover:text-white transition-colors text-xl font-bold group">
+                    <i class="fab fa-linkedin text-3xl mr-3 group-hover:scale-110 transition-transform"></i> Paolina Roiatti
+                </a>
+            </div>
+
+            <!-- BOUTON CV -->
+            <a href="cv.pdf" download="CV_Paolina_Roiatti_Credit_Agricole.pdf" class="inline-flex items-center justify-center bg-caLime text-caNavy font-bold text-lg md:text-xl px-10 py-5 rounded-full hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(196,214,0,0.3)] hover:shadow-[0_0_30px_rgba(196,214,0,0.6)]">
+                <i class="fas fa-file-download mr-3"></i> Télécharger mon CV classique
+            </a>
+        </div>
+        
+        <!-- Motif distinctif type Crédit Agricole bas de page -->
+        <div class="absolute bottom-0 right-0 opacity-10">
+            <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFFFFF" d="M45.7,-76.1C58.9,-69.3,69.2,-55.4,76.6,-40.7C84.1,-26,88.7,-10.5,86.6,4.1C84.5,18.7,75.8,32.4,65.3,43.7C54.8,55,42.5,63.9,28.6,70.5C14.7,77.1,-0.8,81.4,-15.5,78.8C-30.2,76.2,-44.1,66.7,-55.9,54.8C-67.7,42.9,-77.4,28.6,-82.4,12.5C-87.4,-3.6,-87.7,-21.5,-80.4,-36.8C-73.1,-52.1,-58.2,-64.8,-43.3,-70.9C-28.4,-77,-14.2,-76.5,1.2,-78.2C16.6,-79.9,32.5,-82.9,45.7,-76.1Z" transform="translate(100 100) scale(1.1)" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#151520] text-gray-500 text-center py-6 text-sm font-medium">
+        <p>Candidature interactive conçue spécifiquement pour le Groupe Crédit Agricole S.A. - 2026</p>
+    </footer>
+
+    <!-- SCRIPTS POUR L'INTERACTIVITÉ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Menu mobile
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            const menuIcon = mobileMenuBtn.querySelector('i');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+
+            // Accordéons
+            const accordions = document.querySelectorAll('.accordion-btn');
+            accordions.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    accordions.forEach(otherBtn => {
+                        if (otherBtn !== this) {
+                            otherBtn.classList.remove('active');
+                            otherBtn.nextElementSibling.classList.remove('active');
+                        }
+                    });
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                });
+            });
+
+            // Intersection Observer (Fade in au scroll)
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Navigation style au scroll
+            const nav = document.getElementById('main-nav');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Barre de progression
+            const progressBar = document.getElementById('progress-bar');
+            const updateProgress = () => {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollableHeight = documentHeight - windowHeight;
+                const progress = (scrollTop / scrollableHeight) * 100;
+                progressBar.style.height = Math.min(100, Math.max(0, progress)) + '%';
+            };
+
+            window.addEventListener('scroll', updateProgress);
+            window.addEventListener('resize', updateProgress);
+            updateProgress();
+
+            // Ancrages fluides
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const offsetTop = target.offsetTop - 80;
+                            window.scrollTo({
+                                top: offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Effet Parallax sur les cartes
+            const cards = document.querySelectorAll('.hover-lift, .skill-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 30;
+                    const rotateY = (centerX - x) / 30;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.01)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
